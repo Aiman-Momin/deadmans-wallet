@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deadman's Wallet - When you ghost, we post</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Landing Page -->
+    <div class="landing-page">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Deadman's Wallet</h1>
+                <p class="hero-tagline">When you ghost, we post (your assets to someone else)</p>
+                <a href="app.html" class="cta-button">
+                    <i class="fas fa-rocket"></i>
+                    Launch dApp
+                </a>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-card">
+                    <i class="fas fa-wallet"></i>
+                    <div class="card-shine"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="features-container">
+                <h2 class="features-title">Key Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3>Asset Locking</h3>
+                        <p>Securely lock your crypto assets with customizable conditions and time limits.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
+                        <h3>Heir Setup</h3>
+                        <p>Designate trusted heirs who will receive your assets if you become inactive.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h3>Heartbeat Check</h3>
+                        <p>Regular heartbeat signals confirm your activity and keep your assets safe.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Inactivity Timer</h3>
+                        <p>Customizable inactivity periods trigger automatic asset transfers.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <h3>Automatic Transfer</h3>
+                        <p>Seamless, automatic transfer of assets to heirs when conditions are met.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>No Third Party</h3>
+                        <p>Decentralized system with no intermediaries - you control everything.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <p>Deadman's Wallet is a decentralized solution for digital asset inheritance on the Aptos blockchain.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="https://github.com" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
+                        <li><a href="#" class="privacy-link"><i class="fas fa-lock"></i> Privacy</a></li>
+                        <li><a href="app.html"><i class="fas fa-rocket"></i> Launch dApp</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://discord.com" target="_blank"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Deadman's Wallet. Built on Aptos blockchain.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Privacy Modal -->
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Privacy Policy</h2>
+            <p>Deadman's Wallet is a decentralized application that operates entirely on the Aptos blockchain. We do not collect, store, or process any personal information. All wallet interactions happen directly between your wallet and the blockchain.</p>
+            <p>Your wallet address, transaction history, and asset information are public on the blockchain, but we have no access to your private keys or personal data.</p>
+            <p>Use at your own risk. This is a demonstration project for educational purposes.</p>
+        </div>
+    </div>
+
+    <script>
+        // Privacy modal functionality
+        const privacyLink = document.querySelector('.privacy-link');
+        const privacyModal = document.getElementById('privacyModal');
+        const closeModal = document.querySelector('.close');
+
+        privacyLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            privacyModal.style.display = 'block';
+        });
+
+        closeModal.addEventListener('click', () => {
+            privacyModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === privacyModal) {
+                privacyModal.style.display = 'none';
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

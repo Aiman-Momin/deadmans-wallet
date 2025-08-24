@@ -1,0 +1,10 @@
+[package]
+name = "DeadmansWallet"
+version = "1.0.0"
+authors = ["Deadbytes"]
+
+[dependencies]
+AptosFramework = { git = "https://github.com/aptos-labs/aptos-core.git", subdir = "aptos-move/framework/aptos-framework", rev = "main" }
+
+[addresses]
+deadmans_wallet = "0x11ac030e1b9e4be0ac565936c10b5b17ef0afd6cbb27c21571cdc08ad9783d1f"

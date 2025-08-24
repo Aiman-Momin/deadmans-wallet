@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deadman's Wallet dApp</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- dApp Page -->
+    <div class="dapp-page">
+        <!-- Header -->
+        <header class="dapp-header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-wallet"></i>
+                    <h1>Deadman's Wallet</h1>
+                </div>
+                <nav class="nav-links">
+                    <a href="index.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        Home
+                    </a>
+                    <a href="#wallet" class="nav-link">
+                        <i class="fas fa-wallet"></i>
+                        Wallet
+                    </a>
+                    <a href="#lock-assets" class="nav-link">
+                        <i class="fas fa-lock"></i>
+                        Lock Assets
+                    </a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="dapp-main">
+            <!-- Wallet Connection Section -->
+            <section id="wallet" class="section">
+                <div class="container">
+                    <h2 class="section-title">
+                        <i class="fas fa-wallet"></i>
+                        Wallet Connection
+                    </h2>
+                    
+                    <div class="wallet-section">
+                        <div class="wallet-buttons">
+                            <button class="wallet-btn petra-btn" onclick="connectWallet('petra')">
+                                <i class="fab fa-ethereum"></i>
+                                Connect Petra
+                            </button>
+                            <button class="wallet-btn metamask-btn" onclick="connectWallet('metamask')">
+                                <i class="fab fa-ethereum"></i>
+                                Connect MetaMask
+                            </button>
+                            <button class="wallet-btn other-btn" onclick="connectWallet('other')">
+                                <i class="fas fa-wallet"></i>
+                                Connect Custom Wallet
+                            </button>
+                        </div>
+
+                        <!-- Custom Wallet Input -->
+                        <div id="customWalletInput" class="custom-wallet-input" style="display: none;">
+                            <div class="input-group">
+                                <label for="walletAddress">Enter Your Aptos Wallet Address</label>
+                                <input type="text" id="walletAddress" placeholder="0x1234..." class="wallet-input">
+                                <p class="input-help">Enter your actual Aptos wallet address (starts with 0x)</p>
+                            </div>
+                            <div class="input-buttons">
+                                <button onclick="handleCustomWalletSubmit()" class="submit-btn">
+                                    <i class="fas fa-check"></i>
+                                    Connect
+                                </button>
+                                <button onclick="hideCustomWalletInput()" class="cancel-btn">
+                                    <i class="fas fa-times"></i>
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Wallet Status -->
+                        <div id="walletStatus" class="wallet-status">
+                            <div class="status-disconnected">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>No wallet connected</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Asset Locking Section -->
+            <section id="lock-assets" class="section">
+                <div class="container">
+                    <h2 class="section-title">
+                        <i class="fas fa-lock"></i>
+                        Lock Assets
+                    </h2>
+                    
+                    <div class="asset-locking-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="amount">Amount</label>
+                                <input type="number" id="amount" placeholder="0.0" step="0.000001" class="form-input">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="token">Token Type</label>
+                                <select id="token" class="form-select">
+                                    <option value="ETH">ETH</option>
+                                    <option value="USDC">USDC</option>
+                                    <option value="APT">APT</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="heir">Heir Wallet Address</label>
+                                <input type="text" id="heir" placeholder="0xheir..." class="form-input">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="inactivityLimit">Inactivity Limit (days)</label>
+                                <input type="number" id="inactivityLimit" placeholder="7" min="1" class="form-input">
+                            </div>
+                        </div>
+                        
+                        <button onclick="lockAssets()" class="lock-btn">
+                            <i class="fas fa-lock"></i>
+                            Lock Assets
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Control Panel Section -->
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">
+                        <i class="fas fa-cogs"></i>
+                        Control Panel
+                    </h2>
+                    
+                    <div class="control-panel">
+                        <div class="control-buttons">
+                            <button onclick="sendHeartbeat()" class="heartbeat-btn">
+                                <i class="fas fa-heartbeat"></i>
+                                Send Heartbeat
+                            </button>
+                            <button onclick="simulateInactivity()" class="simulate-btn">
+                                <i class="fas fa-clock"></i>
+                                Simulate Inactivity
+                            </button>
+                        </div>
+                        
+                        <div class="status-info">
+                            <div class="status-item">
+                                <span class="status-label">Last Heartbeat:</span>
+                                <span id="lastHeartbeat" class="status-value">Never</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Days Inactive:</span>
+                                <span id="daysInactive" class="status-value">0</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Inactivity Limit:</span>
+                                <span id="inactivityLimitDisplay" class="status-value">Not set</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Action Log Section -->
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">
+                        <i class="fas fa-list"></i>
+                        Action Log
+                    </h2>
+                    
+                    <div class="action-log">
+                        <div id="logContainer" class="log-container">
+                            <div class="log-entry">
+                                <span class="log-time">--:--:--</span>
+                                <span class="log-action">System</span>
+                                <span class="log-message">Deadman's Wallet initialized</span>
+                            </div>
+                        </div>
+                        
+                        <button onclick="clearLog()" class="clear-log-btn">
+                            <i class="fas fa-trash"></i>
+                            Clear Log
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="dapp-footer">
+            <div class="container">
+                <p>&copy; 2024 Deadman's Wallet. Built on Aptos blockchain for demonstration purposes.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
